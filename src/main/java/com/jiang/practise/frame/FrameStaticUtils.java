@@ -13,11 +13,11 @@ public class FrameStaticUtils {
 	public static String URL_FILE_TYPE = "file";
 	public static String URL_JAR_TYPE = "jar";
 	
-	public static Map<String,Class<?>> urlToClassMap = new HashMap<String,Class<?>>();
+	public static Map<String,Object> urlToClassMap = new HashMap<String,Object>();
 	
 	public static Map<String,Method> actionToMethod = new HashMap<String,Method>();
 
-	public static Class<?> getRequestClass(String request){
+	public static Object getRequestClass(String request){
 		request = new StringBuilder(request).reverse().toString();
 		String[] path = request.split("/",2);
 		request = new StringBuilder(path[1]).reverse().toString();
@@ -55,12 +55,21 @@ public class FrameStaticUtils {
 			for (int i = 0; i < annotations.length; i++) {
 				Annotation annotation = annotations[i];
 				if(annotation instanceof FrameUrlAnnonation){
-					urlToClassMap.put(((FrameUrlAnnonation) annotation).urlPattern(), destClass);
-					Method[] methods = destClass.getMethods();
-					for (int j = 0; j < methods.length; j++) {
-						Method method = methods[j];
-						dealMethodClass(method);
+					try {
+						urlToClassMap.put(((FrameUrlAnnonation) annotation).urlPattern(), destClass.newInstance());
+						Method[] methods = destClass.getMethods();
+						for (int j = 0; j < methods.length; j++) {
+							Method method = methods[j];
+							dealMethodClass(method);
+						}
+					} catch (InstantiationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
+					
 				}
 			}
 		}

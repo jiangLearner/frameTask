@@ -25,7 +25,7 @@ public class NIOServer {
 			serverSocketChannel.socket().bind(new InetSocketAddress("127.0.0.1", port));
 			serverSocketChannel.configureBlocking(false);
 			selector = Selector.open();
-			serverSocketChannel.register(selector, SelectionKey.	OP_ACCEPT);
+			serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -56,7 +56,7 @@ public class NIOServer {
 					        continue;  
 						}
 						String input = new String(buf.array()).trim();
-						channel.register(selector, SelectionKey.OP_WRITE);
+						channel.register(selector, SelectionKey.OP_WRITE  | SelectionKey.OP_READ);
 						System.out.println("接收到数据 ======"+input);
 						buf.clear();
 					}else if(selectionKey.isWritable()){
@@ -65,7 +65,7 @@ public class NIOServer {
 						buf.put("服务端写数据".getBytes());
 						buf.flip();
 						channel.write(buf);
-						channel.register(selector, SelectionKey.OP_READ);
+						channel.register(selector, SelectionKey.OP_READ  | SelectionKey.OP_WRITE);
 					}
 				}
 			} catch (IOException e) {
@@ -73,5 +73,28 @@ public class NIOServer {
 				e.printStackTrace();
 			}
 		}
+	}
+}
+
+class sendMessageThread extends Thread{
+	
+	SelectionKey selectionKey;
+	Selector selector;
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		ByteBuffer buf = ByteBuffer.allocate(1024);
+		SocketChannel channel = (SocketChannel)selectionKey.channel();
+		buf.put("服务端写数据".getBytes());
+		buf.flip();
+		try {
+			channel.write(buf);
+			channel.register(selector, SelectionKey.OP_READ  | SelectionKey.OP_WRITE);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

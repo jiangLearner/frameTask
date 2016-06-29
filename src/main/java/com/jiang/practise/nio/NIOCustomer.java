@@ -13,6 +13,7 @@ import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
+import org.springframework.util.StringUtils;
 
 public class NIOCustomer {
 
@@ -46,7 +47,9 @@ public class NIOCustomer {
 				sb.append(line);
 			}
 			String response = sb.toString();
-			System.out.println("response=" + response);
+			if(null != response && !response.equals("")){
+				System.out.println("response=" + response);
+			}
 		}
 		
 	}

@@ -40,11 +40,11 @@ public class FrameServlet extends HttpServlet{
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String requestUrl = req.getPathInfo();
-		Class<?> class1 = FrameStaticUtils.getRequestClass(requestUrl);
+		Object class1 = FrameStaticUtils.getRequestClass(requestUrl);
 		Method method = FrameStaticUtils.getRequestMethod(requestUrl);
 		if(null != class1 && null != method){
 			try {
-				method.invoke(class1.newInstance(), req,resp);
+				method.invoke(class1, req,resp);
 			} catch (IllegalArgumentException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -54,10 +54,7 @@ public class FrameServlet extends HttpServlet{
 			} catch (InvocationTargetException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} catch (InstantiationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			} 
 		}
 	}
 	
