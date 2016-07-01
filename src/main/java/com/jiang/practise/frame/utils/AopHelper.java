@@ -1,6 +1,7 @@
 package com.jiang.practise.frame.utils;
 
 import java.lang.annotation.Annotation;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -36,11 +37,23 @@ public class AopHelper {
 		return proxyMap;
 	}
 	
-	private static Map<Class<?>, List<Proxy>> createTargetMap(Map<Class<?>, Set<Class<?>>> proxyMap){
+	private static Map<Class<?>, List<Proxy>> createTargetMap(Map<Class<?>, Set<Class<?>>> proxyMap) throws Exception{
 		
 		Map<Class<?>, List<Proxy>> targetMap = new HashMap<Class<?>, List<Proxy>>();
-		
+		for (Map.Entry<Class<?>, Set<Class<?>>> entry : proxyMap.entrySet()) {
+			Class<?> proxyClass = entry.getKey();
+			Set<Class<?>> targetClassSet = entry.getValue();
+			for (Class<?> cls : targetClassSet) {
+				Proxy proxy = (Proxy) proxyClass.newInstance();
+				if(targetMap.containsKey(cls)){
+					targetMap.get(cls).add(proxy);
+				}else{
+					List<Proxy> list = new ArrayList<Proxy>();
+					list.add(proxy);
+					targetMap.put(cls, list);
+				}
+			}
+		}
 		return targetMap;
-		
 	}
 }
