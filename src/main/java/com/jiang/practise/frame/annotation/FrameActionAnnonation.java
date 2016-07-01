@@ -1,4 +1,4 @@
-package com.jiang.practise.frame;
+package com.jiang.practise.frame.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

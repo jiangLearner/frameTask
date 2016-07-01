@@ -1,11 +1,13 @@
-package com.jiang.practise.frame;
+package com.jiang.practise.frame.utils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.net.URL;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+import com.jiang.practise.frame.annotation.FrameActionAnnonation;
+import com.jiang.practise.frame.annotation.FrameUrlAnnonation;
 
 
 public class FrameStaticUtils {
@@ -31,7 +33,7 @@ public class FrameStaticUtils {
 		return actionToMethod.get(action);
 	}
 	
-	public static void scanPackage(String packageName){
+	/*public static void scanPackage(String packageName){
 		String packageDirName = packageName.replace('.', '/');
 		List<String> fileNames = null; 
 		URL url = Thread.currentThread().getContextClassLoader().getResource(packageDirName);
@@ -43,10 +45,14 @@ public class FrameStaticUtils {
        //         fileNames = getClassNameByJar(url.getPath(), childPackage);  
             }  
 		}
-	}
+	}*/
 	
-	public static void main(String[] args){
-		dealUrlClass(com.jiang.practise.servlet.HelloServlet.class);
+	public static void init(){
+		Set<Class<?>> classes = ClassHelper.getControllerClassSet();
+		for (Class<?> cls : classes) {
+			dealUrlClass(cls);
+		}
+		//dealUrlClass(com.jiang.practise.servlet.HelloServlet.class);
 	}
 	
 	public static void dealUrlClass(Class<?> destClass){

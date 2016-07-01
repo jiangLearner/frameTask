@@ -6,8 +6,8 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jiang.practise.frame.FrameActionAnnonation;
-import com.jiang.practise.frame.FrameUrlAnnonation;
+import com.jiang.practise.frame.annotation.FrameActionAnnonation;
+import com.jiang.practise.frame.annotation.FrameUrlAnnonation;
 
 @FrameUrlAnnonation(urlPattern="/hello")
 public class HelloServlet   {

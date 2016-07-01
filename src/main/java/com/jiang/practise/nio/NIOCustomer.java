@@ -13,7 +13,6 @@ import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
-import org.springframework.util.StringUtils;
 
 public class NIOCustomer {
 

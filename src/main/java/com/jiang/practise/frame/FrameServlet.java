@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jiang.practise.frame.FrameStaticUtils;
+import com.jiang.practise.frame.utils.FrameStaticUtils;
 
 public class FrameServlet extends HttpServlet{
 
@@ -24,7 +24,7 @@ public class FrameServlet extends HttpServlet{
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
 		
-		FrameStaticUtils.dealUrlClass(com.jiang.practise.servlet.HelloServlet.class);
+		FrameStaticUtils.init();
 	}
 	
 	

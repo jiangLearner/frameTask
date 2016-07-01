@@ -1,4 +1,4 @@
-package com.jiang.practise.frame;
+package com.jiang.practise.frame.proxy;
 
 import java.lang.reflect.Method;
 

@@ -1,4 +1,4 @@
-package com.jiang.practise.proxy;
+package com.jiang.practise.frame.proxy;
 
 
 public interface Proxy {
