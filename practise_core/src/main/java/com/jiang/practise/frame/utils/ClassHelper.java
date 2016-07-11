@@ -11,7 +11,7 @@ public class ClassHelper {
 	private static final Set<Class<?>> CLASS_SET; 
 	
 	static {
-		String basePackage = "com.jiang.practise.servlet";
+		String basePackage = "practise_wen/com.jiang.practise.servlet";
 		CLASS_SET = ClassUtils.getClassSet(basePackage);
 	}
 
