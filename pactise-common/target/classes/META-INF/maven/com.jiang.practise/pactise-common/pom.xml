@@ -8,9 +8,7 @@
 		<artifactId>day_practise</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>com.jiang.practise</groupId>
 	<artifactId>pactise-common</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>pactise-common</name>
 	<url>http://maven.apache.org</url>
 	<properties>
@@ -28,7 +26,6 @@
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
 			<version>2.2.2</version>
-
 		</dependency>
 	</dependencies>
 </project>

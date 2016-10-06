@@ -9,6 +9,9 @@
         <dependent-module archiveName="practise_core-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/practise_core/practise_core">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="pactise-common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/pactise-common/pactise-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path" value="/practise_web/target/classes"/>
         <property name="context-root" value="/"/>
     </wb-module>
